@@ -1,0 +1,5 @@
+Cuento con más de diez años de experiencia en tecnologías de la información, desarrollando una trayectoria que combina implementación de soluciones, aseguramiento de la calidad, automatización de pruebas y desarrollo de software. Actualmente, mi objetivo profesional es continuar creciendo como desarrollador, sin dejar de aportar el conocimiento adquirido en control de calidad y soporte técnico.
+Cuento con la capacidad de comunicarme de forma fluida y profesional en inglés y español.
+En los últimos cinco años he gestionado
+implementaciones tecnológicas de principio a fin, asegurando el cumplimiento de los requerimientos del proyecto y estándares de calidad. Paralelamente, he fortalecido mis competencias en JavaScript, Node.js, Express.js, Java, HTML, CSS y Cypress en entornos de desarrollo CI/CD.
+Lo que más me motiva es desarrollar soluciones que generen valor humano y colaborar con equipos multidisciplinarios para construir soluciones complejas de uso práctico y de calidad.
