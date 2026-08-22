@@ -136,12 +136,12 @@ export const services: Record<
     {
       number: "02",
       title: "QA automation",
-      copy: "Quality-focused development and Cypress automation that help teams build confidence before production.",
+      copy: "Quality-focused development and automation testing that help teams build confidence before production.",
     },
     {
       number: "03",
       title: "Client-facing implementation",
-      copy: "End-to-end technical implementations, technical demos, and clear communication across stakeholders.",
+      copy: "End-to-end technical implementations, technical demos, and clear communication across clients and stakeholders.",
     },
   ],
   es: [

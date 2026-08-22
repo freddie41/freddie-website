@@ -161,12 +161,23 @@ export function PortfolioPage() {
             </button>
           </div>
           <button
-            className="menu-toggle"
+            className={menuOpen ? "menu-toggle is-open" : "menu-toggle"}
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? copy.closeMenu : copy.menu}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            <span
+              className="menu-toggle-icon menu-toggle-open"
+              aria-hidden="true"
+            >
+              <X size={20} />
+            </span>
+            <span
+              className="menu-toggle-icon menu-toggle-closed"
+              aria-hidden="true"
+            >
+              <Menu size={20} />
+            </span>
           </button>
         </div>
       </header>
@@ -224,11 +235,9 @@ export function PortfolioPage() {
         >
           <div className="section-heading">
             <p className="eyebrow">01 / {copy.nav.services}</p>
-            <div className="section-heading-copy">
-              <h2 id="services-title">{copy.services}</h2>
-              <p className="section-lead">{copy.servicesLead}</p>
-            </div>
+            <h2 id="services-title">{copy.services}</h2>
           </div>
+          <p className="section-lead">{copy.servicesLead}</p>
           <div className="services-list">
             {services[language].map((service) => (
               <article className="service" key={service.number}>

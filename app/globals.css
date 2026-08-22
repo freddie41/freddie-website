@@ -153,7 +153,43 @@ button {
     border-radius: var(--radius-pill);
     cursor: pointer;
     display: none;
+    height: 2.2rem;
+    position: relative;
     padding: .35rem;
+    width: 2.2rem;
+}
+
+.menu-toggle-icon {
+    align-items: center;
+    display: inline-flex;
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+    transition: opacity .26s ease, transform .26s ease;
+}
+
+.menu-toggle-open {
+    opacity: 0;
+    transform: scale(.7) rotate(-18deg);
+}
+
+.menu-toggle-closed {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+.menu-toggle.is-open {
+    background: color-mix(in srgb, var(--paper) 84%, white);
+}
+
+.menu-toggle.is-open .menu-toggle-open {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+.menu-toggle.is-open .menu-toggle-closed {
+    opacity: 0;
+    transform: scale(.7) rotate(18deg);
 }
 
 .hero {
@@ -338,15 +374,6 @@ h2 {
     padding-top: .45rem;
 }
 
-.section-heading-copy .section-lead {
-    margin: .85rem 0 2.25rem;
-    max-width: 42rem;
-}
-
-.services-section .section-heading-copy .section-lead {
-    max-width: none;
-}
-
 .section-lead {
     color: #40504a;
     font-size: 1.06rem;
@@ -397,6 +424,12 @@ h2 {
 }
 
 .expertise-section>.section-lead {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.services-section>.section-lead {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -759,18 +792,24 @@ h2 {
     .main-nav {
         background: var(--paper);
         border-bottom: 1px solid var(--line);
-        display: none;
+        display: flex;
         flex-direction: column;
         gap: 0;
         left: 0;
+        opacity: 0;
+        pointer-events: none;
         padding: .75rem 1.2rem 1.2rem;
         position: absolute;
         right: 0;
         top: 4.25rem;
+        transform: translateY(-12px);
+        transition: opacity .28s ease, transform .28s ease;
     }
 
     .main-nav.is-open {
-        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
     }
 
     .main-nav a {
@@ -791,6 +830,7 @@ h2 {
 
     .portrait-frame {
         aspect-ratio: 1;
+        transition-duration: .01ms !important;
         order: -1;
     }
 
