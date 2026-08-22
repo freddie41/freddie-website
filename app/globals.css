@@ -791,17 +791,20 @@ h2 {
 
     .main-nav {
         background: var(--paper);
-        border-bottom: 1px solid var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 12px 30px color-mix(in srgb, var(--ink) 14%, transparent);
         display: flex;
         flex-direction: column;
         gap: 0;
-        left: 0;
+        left: 1.2rem;
         opacity: 0;
+        overflow: hidden;
         pointer-events: none;
-        padding: .75rem 1.2rem 1.2rem;
+        padding: .4rem .95rem .65rem;
         position: absolute;
-        right: 0;
-        top: 4.25rem;
+        right: 1.2rem;
+        top: calc(4.25rem + .35rem);
         transform: translateY(-12px);
         transition: opacity .28s ease, transform .28s ease;
     }
@@ -814,7 +817,11 @@ h2 {
 
     .main-nav a {
         border-bottom: 1px solid var(--line);
-        padding: .9rem 0;
+        padding: .9rem .15rem;
+    }
+
+    .main-nav a:last-child {
+        border-bottom: 0;
     }
 
     .menu-toggle {
