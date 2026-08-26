@@ -39,7 +39,18 @@ button {
 }
 
 .site-shell {
+    background: var(--paper);
+    color: var(--ink);
     overflow: clip;
+    transition: background-color .3s ease, color .3s ease;
+}
+
+.site-shell.is-dark {
+    --ink: #edf3ee;
+    --muted: #aebbb3;
+    --paper: #1b2521;
+    --line: #3b4a43;
+    --forest: #10372d;
 }
 
 .section-wrap {
@@ -65,13 +76,25 @@ button {
 }
 
 .wordmark {
-    font-size: 1.3rem;
+    align-items: baseline;
+    display: inline-flex;
+    font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 0;
+    letter-spacing: .08em;
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.wordmark span {
+.wordmark-letters {
+    color: var(--ink);
+}
+
+.wordmark-mark {
     color: var(--accent);
+    font-size: 1.3em;
+    line-height: .7;
+    margin-left: .04em;
+    transform: translateY(.03em);
 }
 
 .main-nav {
@@ -96,6 +119,30 @@ button {
     align-items: center;
     display: flex;
     gap: 1.3rem;
+}
+
+.theme-toggle {
+    align-items: center;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    display: inline-flex;
+    height: 2.2rem;
+    justify-content: center;
+    padding: 0;
+    transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+    width: 2.2rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .language-switch {
@@ -196,7 +243,7 @@ button {
     align-items: center;
     display: grid;
     gap: clamp(2.5rem, 6vw, 7rem);
-    grid-template-columns: 1.12fr .88fr;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
     min-height: calc(100vh - 4.75rem);
     padding-bottom: 5rem;
     padding-top: 4rem;
@@ -204,6 +251,7 @@ button {
 
 .hero-copy {
     animation: rise .65s ease-out both;
+    min-width: 0;
 }
 
 .eyebrow {
@@ -284,6 +332,13 @@ h2 {
     max-width: 38rem;
 }
 
+.site-shell.is-dark .hero-title-support,
+.site-shell.is-dark .hero-intro,
+.site-shell.is-dark .section-lead,
+.site-shell.is-dark .service p {
+    color: #c4d1ca;
+}
+
 .hero-actions {
     align-items: center;
     display: flex;
@@ -333,6 +388,7 @@ h2 {
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
+    width: 100%;
 }
 
 .portrait-frame img {
@@ -358,6 +414,7 @@ h2 {
 
 .services-section,
 .expertise-section,
+.soft-skills-section,
 .recommendations-section,
 .certifications-section {
     padding-bottom: 6.5rem;
@@ -416,14 +473,53 @@ h2 {
 }
 
 .expertise-section,
+.soft-skills-section,
+.recommendations-section,
 .certifications-section {
-    background: #e4ebe4;
     max-width: none;
     padding-left: max(2rem, calc((100vw - 78rem) / 2 + 2rem));
     padding-right: max(2rem, calc((100vw - 78rem) / 2 + 2rem));
 }
 
+.expertise-section {
+    background: #e4ebe4;
+}
+
+.soft-skills-section {
+    background: #eee4d8;
+}
+
+.recommendations-section {
+    background: #e8eee9;
+}
+
+.certifications-section {
+    background: #e9e1d7;
+}
+
+.site-shell.is-dark .expertise-section {
+    background: #223b32;
+}
+
+.site-shell.is-dark .soft-skills-section {
+    background: #3a3028;
+}
+
+.site-shell.is-dark .recommendations-section {
+    background: #263934;
+}
+
+.site-shell.is-dark .certifications-section {
+    background: #39332c;
+}
+
 .expertise-section>.section-lead {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.soft-skills-section>.section-lead {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -448,21 +544,31 @@ h2 {
 }
 
 .skills-grid {
-    border-top: 1px solid #becabf;
+    border: 1px solid #becabf;
     border-radius: var(--radius-lg);
     display: grid;
     overflow: hidden;
     grid-template-columns: repeat(4, 1fr);
 }
 
+.site-shell.is-dark .skills-grid,
+.site-shell.is-dark .skill-group,
+.site-shell.is-dark .skill-group li {
+    border-color: #52645a;
+}
+
 .skill-group {
-    border-right: 1px solid #becabf;
+    border-left: 1px solid #becabf;
     min-height: 0;
     padding: 1.4rem;
 }
 
 .skill-group:first-child {
-    border-left: 1px solid #becabf;
+    border-left: 0;
+}
+
+.skill-group:nth-child(4n + 1) {
+    border-left: 0;
 }
 
 .skill-group h3 {
@@ -479,11 +585,95 @@ h2 {
 }
 
 .skill-group li {
+    align-items: center;
     border-bottom: 1px solid #cbd4cb;
+    display: flex;
+    flex-wrap: wrap;
     font-family: var(--sans);
     font-size: 1rem;
     font-weight: 500;
+    gap: .4rem;
     padding: .7rem 0;
+}
+
+.skill-part {
+    align-items: center;
+    display: inline-flex;
+    gap: .4rem;
+}
+
+.skill-icon {
+    align-items: center;
+    color: var(--accent);
+    display: inline-flex;
+    flex: 0 0 1.1rem;
+    justify-content: center;
+}
+
+.skill-separator {
+    color: #7b897f;
+    margin-left: .05rem;
+}
+
+.skill-group li:last-child {
+    border-bottom: 0;
+}
+
+.soft-skills-grid {
+    display: grid;
+    gap: .75rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.soft-skill {
+    background:
+        radial-gradient(120% 140% at 100% 0%, #fdf8ef 0%, transparent 40%),
+        var(--paper);
+    border: 1px solid #e2ddd1;
+    border-radius: var(--radius-md);
+    min-height: 9rem;
+    padding: 1.35rem;
+}
+
+.site-shell.is-dark .soft-skill,
+.site-shell.is-dark .recommendation,
+.site-shell.is-dark .certification {
+    background:
+        radial-gradient(120% 140% at 100% 0%, #3b4039 0%, transparent 40%),
+        #202b26;
+    border-color: #53635a;
+}
+
+.soft-skill.primary {
+    background: var(--forest);
+    color: #f6f3eb;
+    grid-column: 1 / -1;
+    min-height: 10rem;
+}
+
+.soft-skill h3 {
+    color: var(--accent);
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: .6rem;
+}
+
+.soft-skill.primary h3 {
+    color: #f0a083;
+    font-size: 1.45rem;
+}
+
+.soft-skill p {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.soft-skill.primary p {
+    color: #deebe1;
+    max-width: 42rem;
 }
 
 .about-section {
@@ -553,6 +743,10 @@ h2 {
     display: grid;
     gap: .15rem;
     padding-top: 1.1rem;
+}
+
+.site-shell.is-dark .recommendation figcaption {
+    border-color: #53635a;
 }
 
 .recommendation strong {
@@ -647,6 +841,10 @@ h2 {
     padding: .65rem;
 }
 
+.site-shell.is-dark .certifications-list {
+    border-color: #52645a;
+}
+
 .certification {
     align-items: baseline;
     background:
@@ -700,6 +898,11 @@ h2 {
     margin-top: 1.5rem;
     padding: .6rem 1rem;
     transition: border-color .2s ease, transform .2s ease;
+}
+
+.site-shell.is-dark .disclosure {
+    background: #202b26;
+    border-color: #52645a;
 }
 
 .disclosure:hover {
@@ -809,6 +1012,10 @@ h2 {
         transition: opacity .28s ease, transform .28s ease;
     }
 
+    .site-shell.is-dark .main-nav {
+        background: var(--paper);
+    }
+
     .main-nav.is-open {
         opacity: 1;
         pointer-events: auto;
@@ -865,6 +1072,7 @@ h2 {
 
     .services-section,
     .expertise-section,
+    .soft-skills-section,
     .recommendations-section,
     .certifications-section {
         padding-bottom: 4.5rem;
@@ -879,12 +1087,20 @@ h2 {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .soft-skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .skill-group:nth-child(3) {
         border-left: 1px solid #becabf;
     }
 
     .skill-group {
         min-height: 0;
+    }
+
+    .soft-skill.primary {
+        grid-column: 1 / -1;
     }
 
     .about-section {
@@ -933,6 +1149,10 @@ h2 {
     }
 
     .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soft-skills-grid {
         grid-template-columns: 1fr;
     }
 

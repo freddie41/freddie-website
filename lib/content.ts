@@ -4,11 +4,13 @@ type Translation = {
   nav: {
     services: string;
     expertise: string;
+    softSkills: string;
     about: string;
     recommendations: string;
     contact: string;
   };
   availability: string;
+  roleConnector: string;
   intro: string;
   location: string;
   contact: string;
@@ -16,6 +18,8 @@ type Translation = {
   servicesLead: string;
   skills: string;
   skillsLead: string;
+  softSkills: string;
+  softSkillsLead: string;
   about: string;
   aboutCopy: string;
   recommendations: string;
@@ -30,15 +34,12 @@ type Translation = {
   rights: string;
   menu: string;
   closeMenu: string;
+  switchToLightMode: string;
+  switchToDarkMode: string;
 };
 
 export const profile = {
   name: "Federico Cuelho Lariau",
-  roles: {
-    engineering: "Software Engineer",
-    quality: "QA Automation Specialist",
-    client: "Client-Facing Solutions & Technical Demos",
-  },
   email: "fcl41@me.com",
   github: "https://github.com/freddie41",
   linkedin: "https://linkedin.com/in/fedecl41",
@@ -49,11 +50,13 @@ export const translations: Record<Language, Translation> = {
     nav: {
       services: "Services",
       expertise: "Expertise",
+      softSkills: "Soft skills",
       about: "About",
       recommendations: "Recommendations",
       contact: "Contact",
     },
     availability: "Punta del Este, Uruguay · GMT-3",
+    roleConnector: "and",
     intro:
       "I bring engineering rigor, QA thinking, and clear client communication to software that needs to work in the real world.",
     location:
@@ -65,6 +68,9 @@ export const translations: Record<Language, Translation> = {
     skills: "Technical foundation",
     skillsLead:
       "A practical, full-stack toolkit informed by quality engineering and delivery experience.",
+    softSkills: "How I work",
+    softSkillsLead:
+      "The habits and qualities I bring to complex work, collaboration, and delivery.",
     about: "A careful builder",
     aboutCopy:
       "With more than ten years in information technology, I combine end-to-end solution implementation, quality assurance, test automation, and software development. For the past five years, I have managed technology implementations against project requirements and quality standards while strengthening my development practice. I am motivated by practical solutions that create human value and by thoughtful collaboration across disciplines.",
@@ -82,18 +88,22 @@ export const translations: Record<Language, Translation> = {
     rights: "All rights reserved.",
     menu: "Open menu",
     closeMenu: "Close menu",
+    switchToLightMode: "Switch to light mode",
+    switchToDarkMode: "Switch to dark mode",
   },
   es: {
     nav: {
       services: "Servicios",
       expertise: "Experiencia",
+      softSkills: "Habilidades personales",
       about: "Sobre mí",
       recommendations: "Recomendaciones",
       contact: "Contacto",
     },
     availability: "Punta del Este, Uruguay · GMT-3",
+    roleConnector: "y",
     intro:
-      "Aporto rigor de ingeniería, mentalidad de QA y comunicación clara con clientes al software que debe funcionar en el mundo real.",
+      "Aporto rigor de ingeniería, mentalidad de QA y comunicación clara con clientes al software que debe funcionar de manera práctica en el mundo real.",
     location:
       "Desde Punta del Este, Uruguay.\nTrabajo con fluidez en inglés y español.",
     contact: "Iniciar una conversación",
@@ -103,6 +113,9 @@ export const translations: Record<Language, Translation> = {
     skills: "Base técnica",
     skillsLead:
       "Un conjunto de herramientas full-stack práctico, formado por la ingeniería de calidad y la experiencia de entrega.",
+    softSkills: "Cómo trabajo",
+    softSkillsLead:
+      "Los hábitos y cualidades que aporto al trabajo complejo, la colaboración y la entrega.",
     about: "Un desarrollador meticuloso",
     aboutCopy:
       "Con más de diez años en tecnologías de la información, combino implementación integral de soluciones, aseguramiento de la calidad, automatización de pruebas y desarrollo de software. Durante los últimos cinco años, he gestionado implementaciones tecnológicas cumpliendo requerimientos y estándares de calidad, mientras fortalecía mi práctica como desarrollador. Me motivan las soluciones prácticas que generan valor humano y la colaboración reflexiva entre disciplinas.",
@@ -116,10 +129,28 @@ export const translations: Record<Language, Translation> = {
       "Credenciales recientes que respaldan la ingeniería práctica, la automatización y la comunicación.",
     allCertifications: "Ver todas las certificaciones",
     lessCertifications: "Ver menos certificaciones",
-    footer: "Construyamos algo confiable.",
+    footer: "Construyamos algo confiable;",
     rights: "Todos los derechos reservados.",
     menu: "Abrir menú",
     closeMenu: "Cerrar menú",
+    switchToLightMode: "Cambiar al modo claro",
+    switchToDarkMode: "Cambiar al modo oscuro",
+  },
+};
+
+export const roles: Record<
+  Language,
+  { engineering: string; quality: string; client: string }
+> = {
+  en: {
+    engineering: "Software Developer",
+    quality: "QA Automation Specialist",
+    client: "Client-Facing Solutions & Technical Demos",
+  },
+  es: {
+    engineering: "Desarrollador de software",
+    quality: "Especialista en automatización de QA",
+    client: "Soluciones orientadas al cliente y demos técnicas",
   },
 };
 
@@ -166,15 +197,97 @@ export const services: Record<
 export const skillGroups = [
   {
     label: "Build",
-    skills: ["JavaScript | TypeScript", "Node.js | Express.js", "Java"],
+    skills: ["JavaScript | TypeScript", "Node.js", "Express.js", "Git"],
   },
-  { label: "Interface", skills: ["HTML 5", "CSS 3", "Bootstrap 5"] },
-  { label: "Quality", skills: ["Cypress.io", "Katalon Studio", "CI/CD"] },
   {
-    label: "Data & delivery",
-    skills: ["SQL", "Technical demos", "Implementations"],
+    label: "Interface",
+    skills: ["React", "Next.js", "HTML 5 | CSS 3", "Bootstrap 5"],
+  },
+  {
+    label: "Quality & Automation",
+    skills: ["Cypress.io", "Katalon Studio", "Azure DevOps", "GitHub Actions"],
+  },
+  {
+    label: "Data & Delivery",
+    skills: [
+      "Microsoft SQL Server",
+      "Oracle SQL Developer",
+      "DevExpress",
+      "Technical demos",
+    ],
   },
 ];
+
+type SoftSkill = { title: string; detail: string; primary?: boolean };
+
+export const softSkills: Record<Language, SoftSkill[]> = {
+  en: [
+    {
+      title: "High attention to detail",
+      detail: "Recognized in previous roles as a defining strength.",
+      primary: true,
+    },
+    {
+      title: "Analytical thinking and problem-solving",
+      detail: "Breaks complex problems into evidence-based, practical steps.",
+    },
+    {
+      title: "Results-oriented",
+      detail: "Works well under pressure while keeping outcomes in focus.",
+    },
+    {
+      title: "Teamwork and empathy",
+      detail:
+        "Collaborates thoughtfully and supports people across disciplines.",
+    },
+    {
+      title: "Organization and methodology",
+      detail: "Brings structure, consistency, and technical rigor to delivery.",
+    },
+    {
+      title: "Autonomy and proactivity",
+      detail: "Takes initiative, learns independently, and moves work forward.",
+    },
+    {
+      title: "Commitment and accountability",
+      detail: "Takes ownership of responsibilities and follows through.",
+    },
+  ],
+  es: [
+    {
+      title: "Alta atención al detalle",
+      detail: "Reconocida en trabajos anteriores como una fortaleza principal.",
+      primary: true,
+    },
+    {
+      title: "Pensamiento analítico y resolución de problemas",
+      detail:
+        "Divide los problemas complejos en pasos prácticos basados en evidencia.",
+    },
+    {
+      title: "Orientación a resultados",
+      detail: "Trabaja bien bajo presión sin perder de vista los objetivos.",
+    },
+    {
+      title: "Trabajo en equipo y empatía",
+      detail:
+        "Colabora con atención y apoya a personas de distintas disciplinas.",
+    },
+    {
+      title: "Organización y metodología",
+      detail: "Aporta estructura, consistencia y rigor técnico a la entrega.",
+    },
+    {
+      title: "Autonomía y proactividad",
+      detail:
+        "Toma la iniciativa, aprende de forma autónoma y hace avanzar el trabajo.",
+    },
+    {
+      title: "Compromiso y responsabilidad",
+      detail: "Asume sus responsabilidades y cumple con lo acordado.",
+    },
+  ],
+};
 
 type Recommendation = {
   name: string;

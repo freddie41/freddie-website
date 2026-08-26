@@ -4,45 +4,54 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
-  BookOpen,
   Bot,
+  Code2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  GraduationCap,
+  DatabaseZap,
+  FileText,
   Mail,
   MapPin,
   Menu,
+  Moon,
+  Presentation,
   ShieldCheck,
+  Sun,
+  Terminal,
+  TestTube2,
   X,
 } from "lucide-react";
+import {
+  siBootstrap,
+  siAnthropic,
+  siCoursera,
+  siCss,
+  siCypress,
+  siExpress,
+  siGit,
+  siGithub,
+  siGithubactions,
+  siHtml5,
+  siJavascript,
+  siUdemy,
+  siNodedotjs,
+  siReact,
+  siTypescript,
+  siNextdotjs,
+  siDevexpress,
+} from "simple-icons/icons";
 import {
   certifications,
   profile,
   recommendations,
+  roles,
   services,
   skillGroups,
+  softSkills,
   translations,
   type Language,
 } from "@/lib/content";
-
-function GitHubIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg
-      aria-hidden="true"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-    </svg>
-  );
-}
 
 function LinkedInIcon({ size = 16 }: { size?: number }) {
   return (
@@ -64,17 +73,42 @@ function LinkedInIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+function BrandIcon({
+  icon,
+  size = 17,
+}: {
+  icon: { path: string; title: string };
+  size?: number;
+}) {
+  return (
+    <svg
+      aria-hidden="true"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      role="img"
+      focusable="false"
+    >
+      <title>{icon.title}</title>
+      <path d={icon.path} fill="currentColor" />
+    </svg>
+  );
+}
+
 export function PortfolioPage() {
   const [language, setLanguage] = useState<Language>("en");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [activeRecommendation, setActiveRecommendation] = useState(0);
   const copy = translations[language];
+  const roleCopy = roles[language];
   const recommendationList = recommendations[language];
   const currentRecommendation = recommendationList[activeRecommendation];
   const navigation = [
     ["services", copy.nav.services],
     ["expertise", copy.nav.expertise],
+    ["soft-skills", copy.nav.softSkills],
     ["about", copy.nav.about],
     ["recommendations", copy.nav.recommendations],
     ["contact", copy.nav.contact],
@@ -105,15 +139,15 @@ export function PortfolioPage() {
     const normalizedIssuer = issuer.toLowerCase();
 
     if (normalizedIssuer.includes("anthropic")) {
-      return <Bot size={14} aria-hidden="true" />;
+      return <BrandIcon icon={siAnthropic} size={14} />;
     }
 
     if (normalizedIssuer.includes("udemy")) {
-      return <BookOpen size={14} aria-hidden="true" />;
+      return <BrandIcon icon={siUdemy} size={14} />;
     }
 
     if (normalizedIssuer.includes("coursera")) {
-      return <GraduationCap size={14} aria-hidden="true" />;
+      return <BrandIcon icon={siCoursera} size={14} />;
     }
 
     if (normalizedIssuer.includes("linkedin")) {
@@ -123,11 +157,99 @@ export function PortfolioPage() {
     return <ShieldCheck size={14} aria-hidden="true" />;
   }
 
+  function getSkillIcon(skill: string) {
+    if (skill.includes("JavaScript")) {
+      return <BrandIcon icon={siJavascript} />;
+    }
+
+    if (skill.includes("TypeScript")) {
+      return <BrandIcon icon={siTypescript} />;
+    }
+
+    if (skill.includes("Node.js")) {
+      return <BrandIcon icon={siNodedotjs} />;
+    }
+
+    if (skill.includes("Express.js")) {
+      return <BrandIcon icon={siExpress} />;
+    }
+
+    if (skill.includes("React")) {
+      return <BrandIcon icon={siReact} />;
+    }
+
+    if (skill.includes("Next.js")) {
+      return <BrandIcon icon={siNextdotjs} />;
+    }
+
+    if (skill.includes("HTML")) {
+      return <BrandIcon icon={siHtml5} />;
+    }
+
+    if (skill.includes("CSS")) {
+      return <BrandIcon icon={siCss} />;
+    }
+
+    if (skill.includes("Bootstrap")) {
+      return <BrandIcon icon={siBootstrap} />;
+    }
+
+    if (skill.includes("Cypress")) {
+      return <BrandIcon icon={siCypress} />;
+    }
+
+    if (skill.includes("Katalon")) {
+      return <TestTube2 size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("Azure DevOps")) {
+      return <BrandIcon icon={siGithubactions} />;
+    }
+
+    if (skill.includes("GitHub Actions")) {
+      return <BrandIcon icon={siGithub} />;
+    }
+
+    if (
+      skill.includes("Microsoft SQL Server") ||
+      skill.includes("Oracle SQL Developer")
+    ) {
+      return <DatabaseZap size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("Technical demos")) {
+      return <Presentation size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("AI")) {
+      return <Bot size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("CLI") || skill.includes("Bash")) {
+      return <Terminal size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("Git")) {
+      return <BrandIcon icon={siGit} />;
+    }
+
+    if (skill.includes("Documentation")) {
+      return <FileText size={17} aria-hidden="true" />;
+    }
+
+    if (skill.includes("DevExpress")) {
+      return <BrandIcon icon={siDevexpress} />;
+    }
+
+    return <Code2 size={17} aria-hidden="true" />;
+  }
+
   return (
-    <div className="site-shell" lang={language}>
+    <div className={darkMode ? "site-shell is-dark" : "site-shell"} lang={language}>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label={`${profile.name} home`}>
-          FCL<span>.</span>
+          <span className="wordmark-letters">FCL</span>
+          <span className="wordmark-mark">;</span>
         </a>
         <nav
           className={menuOpen ? "main-nav is-open" : "main-nav"}
@@ -161,6 +283,18 @@ export function PortfolioPage() {
             </button>
           </div>
           <button
+            className="theme-toggle"
+            type="button"
+            onClick={() => setDarkMode((dark) => !dark)}
+            aria-label={
+              darkMode ? copy.switchToLightMode : copy.switchToDarkMode
+            }
+            title={darkMode ? copy.switchToLightMode : copy.switchToDarkMode}
+            aria-pressed={darkMode}
+          >
+            {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button
             className={menuOpen ? "menu-toggle is-open" : "menu-toggle"}
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? copy.closeMenu : copy.menu}
@@ -190,10 +324,10 @@ export function PortfolioPage() {
               {copy.availability}
             </p>
             <h1 id="hero-title" className="hero-title">
-              <span>{profile.roles.engineering}</span>
-              <span className="hero-title-connector">and</span>
-              <span>{profile.roles.quality}</span>
-              <span className="hero-title-support">{profile.roles.client}</span>
+              <span>{roleCopy.engineering}</span>
+              <span className="hero-title-connector">{copy.roleConnector}</span>
+              <span>{roleCopy.quality}</span>
+              <span className="hero-title-support">{roleCopy.client}</span>
             </h1>
             <p className="hero-intro">{copy.intro}</p>
             <div className="hero-actions">
@@ -267,9 +401,44 @@ export function PortfolioPage() {
                 <h3>{group.label}</h3>
                 <ul>
                   {group.skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
+                    <li key={skill}>
+                      {skill.split(" | ").map((skillPart, index) => (
+                        <span className="skill-part" key={skillPart}>
+                          <span className="skill-icon">
+                            {getSkillIcon(skillPart)}
+                          </span>
+                          <span>{skillPart}</span>
+                          {index < skill.split(" | ").length - 1 && (
+                            <span className="skill-separator">|</span>
+                          )}
+                        </span>
+                      ))}
+                    </li>
                   ))}
                 </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="section-wrap soft-skills-section"
+          id="soft-skills"
+          aria-labelledby="soft-skills-title"
+        >
+          <div className="section-heading">
+            <p className="eyebrow">03 / {copy.nav.softSkills}</p>
+            <h2 id="soft-skills-title">{copy.softSkills}</h2>
+          </div>
+          <p className="section-lead">{copy.softSkillsLead}</p>
+          <div className="soft-skills-grid">
+            {softSkills[language].map((skill) => (
+              <article
+                className={skill.primary ? "soft-skill primary" : "soft-skill"}
+                key={skill.title}
+              >
+                <h3>{skill.title}</h3>
+                <p>{skill.detail}</p>
               </article>
             ))}
           </div>
@@ -281,7 +450,7 @@ export function PortfolioPage() {
           aria-labelledby="about-title"
         >
           <div className="section-wrap about-layout">
-            <p className="eyebrow">03 / {copy.nav.about}</p>
+            <p className="eyebrow">04 / {copy.nav.about}</p>
             <div>
               <h2 id="about-title">{copy.about}</h2>
               <p>{copy.aboutCopy}</p>
@@ -298,7 +467,7 @@ export function PortfolioPage() {
           aria-labelledby="recommendations-title"
         >
           <div className="section-heading">
-            <p className="eyebrow">04 / {copy.nav.recommendations}</p>
+            <p className="eyebrow">05 / {copy.nav.recommendations}</p>
             <h2 id="recommendations-title">{copy.recommendations}</h2>
           </div>
           <p className="section-lead">{copy.recommendationsLead}</p>
@@ -362,7 +531,7 @@ export function PortfolioPage() {
           aria-labelledby="certifications-title"
         >
           <div className="section-heading">
-            <p className="eyebrow">05 / {copy.certifications}</p>
+            <p className="eyebrow">06 / {copy.certifications}</p>
             <h2 id="certifications-title">{copy.certifications}</h2>
           </div>
           <p className="section-lead">{copy.certificationsLead}</p>
@@ -399,7 +568,7 @@ export function PortfolioPage() {
 
       <footer id="contact" className="site-footer">
         <div className="section-wrap footer-content">
-          <p className="eyebrow">06 / {copy.nav.contact}</p>
+          <p className="eyebrow">07 / {copy.nav.contact}</p>
           <h2>{copy.footer}</h2>
           <a className="footer-email" href={`mailto:${profile.email}`}>
             {profile.email}
@@ -411,7 +580,7 @@ export function PortfolioPage() {
             </span>
             <div>
               <a href={profile.github} target="_blank" rel="noreferrer">
-                <GitHubIcon size={16} />
+                <BrandIcon icon={siGithub} size={16} />
                 GitHub <ArrowUpRight size={16} />
               </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
