@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title:
-    "Federico Cuelho Lariau | Software Engineer & QA Automation Specialist",
+    "Federico Cuelho Lariau | Software Developer & QA Automation Specialist",
   description:
     "Software engineering, QA automation, client-facing solutions, and technical demos by Federico Cuelho Lariau.",
 };

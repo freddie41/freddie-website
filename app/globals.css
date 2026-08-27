@@ -80,7 +80,7 @@ button {
     display: inline-flex;
     font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: .02em;
     line-height: 1;
     white-space: nowrap;
 }
@@ -600,6 +600,7 @@ h2 {
     align-items: center;
     display: inline-flex;
     gap: .4rem;
+    white-space: nowrap;
 }
 
 .skill-icon {
@@ -978,6 +979,20 @@ h2 {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 1080px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-group:nth-child(4n + 1) {
+        border-left: 1px solid #becabf;
+    }
+
+    .skill-group:nth-child(odd) {
+        border-left: 0;
     }
 }
 
