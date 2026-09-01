@@ -143,13 +143,13 @@ export const roles: Record<
   { engineering: string; quality: string; client: string }
 > = {
   en: {
-    engineering: "Software Developer",
-    quality: "QA Automation Specialist",
+    engineering: "Software Engineering",
+    quality: "Quality Automation",
     client: "Client-Facing Solutions & Technical Demos",
   },
   es: {
-    engineering: "Desarrollador de software",
-    quality: "Especialista en automatización de QA",
+    engineering: "Ingeniería de software",
+    quality: "Automatización de QA",
     client: "Soluciones orientadas al cliente y demos técnicas",
   },
 };
