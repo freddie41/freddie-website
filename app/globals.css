@@ -1,3 +1,4 @@
+/* Shared design tokens keep color, typography, and spacing changes centralized. */
 :root {
     color-scheme: light;
     --ink: #1a2420;
@@ -38,6 +39,7 @@ button {
     font: inherit;
 }
 
+/* The shell owns theme variables so every descendant responds to the dark-mode class. */
 .site-shell {
     background: var(--paper);
     color: var(--ink);
@@ -60,6 +62,7 @@ button {
     padding-right: 2rem;
 }
 
+/* Sticky glass header keeps the primary navigation available during long page scans. */
 .site-header {
     align-items: center;
     background: color-mix(in srgb, var(--paper) 92%, transparent);
@@ -239,6 +242,7 @@ button {
     transform: scale(.7) rotate(18deg);
 }
 
+/* The hero uses two columns on larger screens and becomes image-first on mobile. */
 .hero {
     align-items: center;
     display: grid;
@@ -382,6 +386,7 @@ h2 {
     color: var(--accent);
 }
 
+/* The frame clips the image and badge together, allowing hover elevation without layout shifts. */
 .portrait-frame {
     animation: rise .7s .12s ease-out both;
     aspect-ratio: .82;
@@ -426,6 +431,7 @@ h2 {
     position: absolute;
 }
 
+/* Content bands use shared vertical rhythm while each section gets its own background tone. */
 .services-section,
 .expertise-section,
 .soft-skills-section,
@@ -984,6 +990,7 @@ h2 {
     color: #fff;
 }
 
+/* Intro elements enter once; reduced-motion users are handled by the media query below. */
 @keyframes rise {
     from {
         opacity: 0;
@@ -996,6 +1003,7 @@ h2 {
     }
 }
 
+/* Tablet breakpoint reduces multi-column grids before the compact mobile layout. */
 @media (max-width: 1080px) {
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1010,6 +1018,7 @@ h2 {
     }
 }
 
+/* Mobile navigation becomes a toggleable panel and sections switch to single-column flow. */
 @media (max-width: 760px) {
     .section-wrap {
         padding-left: 1.2rem;
@@ -1172,6 +1181,7 @@ h2 {
     }
 }
 
+/* Very narrow screens need smaller type and one-column content grids. */
 @media (max-width: 420px) {
     h1 {
         font-size: 2.55rem;
@@ -1199,6 +1209,7 @@ h2 {
     }
 }
 
+/* Accessibility override: preserve usability without animated movement. */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;

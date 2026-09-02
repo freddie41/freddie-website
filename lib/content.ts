@@ -1,5 +1,6 @@
 export type Language = "en" | "es";
 
+// Both languages implement this shape so the component can render from one data path.
 type Translation = {
   nav: {
     services: string;
@@ -45,6 +46,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/fedecl41",
 };
 
+// UI copy is kept separate from the component to make translation updates low-risk.
 export const translations: Record<Language, Translation> = {
   en: {
     nav: {
@@ -154,6 +156,7 @@ export const roles: Record<
   },
 };
 
+// Service entries are ordered content: the number is displayed as part of the design.
 export const services: Record<
   Language,
   { title: string; copy: string; number: string }[]
@@ -218,6 +221,7 @@ export const skillGroups = [
   },
 ];
 
+// Soft skills use an optional primary flag to identify the full-width highlighted item.
 type SoftSkill = { title: string; detail: string; primary?: boolean };
 
 export const softSkills: Record<Language, SoftSkill[]> = {
@@ -297,6 +301,7 @@ type Recommendation = {
   quote: string;
 };
 
+// Keep English and Spanish recommendation arrays aligned by index for language switching.
 export const recommendations: Record<Language, Recommendation[]> = {
   en: [
     {
@@ -626,6 +631,7 @@ export const recommendations: Record<Language, Recommendation[]> = {
 
 type Certification = { name: string; issuer: string; date: string };
 
+// The component initially shows only the first three entries and reveals the rest on demand.
 export const certifications: Record<Language, Certification[]> = {
   en: [
     { name: "Claude Code in Action", issuer: "Anthropic", date: "August 2026" },

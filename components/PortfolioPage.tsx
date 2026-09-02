@@ -95,12 +95,16 @@ function BrandIcon({
   );
 }
 
+// This client component owns the small interactive behaviors layered over the static portfolio content.
 export function PortfolioPage() {
+  // Resetting the recommendation index when language changes prevents a missing item if arrays diverge.
   const [language, setLanguage] = useState<Language>("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [activeRecommendation, setActiveRecommendation] = useState(0);
+
+  // Derived values keep rendering logic concise and ensure every section uses the active language.
   const copy = translations[language];
   const roleCopy = roles[language];
   const recommendationList = recommendations[language];
@@ -117,6 +121,7 @@ export function PortfolioPage() {
     ? certifications[language]
     : certifications[language].slice(0, 3);
 
+  // The document language matters for screen readers and browser language tooling.
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
@@ -125,6 +130,7 @@ export function PortfolioPage() {
     setMenuOpen(false);
   }
 
+  // A language switch also returns the carousel to its first translated recommendation.
   function switchLanguage(nextLanguage: Language) {
     setLanguage(nextLanguage);
     setActiveRecommendation(0);
@@ -135,6 +141,7 @@ export function PortfolioPage() {
     setActiveRecommendation((current) => (current + direction + total) % total);
   }
 
+  // Issuers without a brand mark fall back to a neutral verification icon.
   function getCertificationIssuerIcon(issuer: string) {
     const normalizedIssuer = issuer.toLowerCase();
 
@@ -157,6 +164,7 @@ export function PortfolioPage() {
     return <ShieldCheck size={14} aria-hidden="true" />;
   }
 
+  // Skill labels are the source of truth; this mapping only selects their visual icon.
   function getSkillIcon(skill: string) {
     if (skill.includes("JavaScript")) {
       return <BrandIcon icon={siJavascript} />;
@@ -244,8 +252,12 @@ export function PortfolioPage() {
     return <Code2 size={17} aria-hidden="true" />;
   }
 
+  // Sections remain declarative below; content and interaction state are assembled above.
   return (
-    <div className={darkMode ? "site-shell is-dark" : "site-shell"} lang={language}>
+    <div
+      className={darkMode ? "site-shell is-dark" : "site-shell"}
+      lang={language}
+    >
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label={`${profile.name} home`}>
           <span className="wordmark-letters">FCL</span>
